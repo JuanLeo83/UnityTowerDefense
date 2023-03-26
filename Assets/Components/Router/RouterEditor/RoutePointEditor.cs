@@ -1,7 +1,8 @@
+using Components.Router.Scripts;
 using UnityEditor;
 using UnityEngine;
 
-namespace Components.Router {
+namespace Components.Router.RouterEditor {
     [CustomEditor(typeof(RoutePoint))]
     public class RoutePointEditor : Editor {
         private RoutePoint RoutePoint => target as RoutePoint;
@@ -23,8 +24,9 @@ namespace Components.Router {
 
         public override void OnInspectorGUI() {
             DrawDefaultInspector();
-            if (GUILayout.Button("Add next point")) {
-                RoutePoint.CreateNextPoint();
+            
+            if (GUILayout.Button("Remove")) {
+                RoutePoint.RemovePoint();
             }
         }
     }
