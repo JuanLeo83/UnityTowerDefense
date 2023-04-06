@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 10
   attack: 5
-  speed: 3
+  speed: 0.5
   type: 0

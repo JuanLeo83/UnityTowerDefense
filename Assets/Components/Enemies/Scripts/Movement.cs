@@ -9,6 +9,8 @@ namespace Components.Enemies.Scripts {
         private RoutePoint _nextRoutePoint;
         private float _speed;
 
+        public bool stop = false;
+
         private void Start() {
             _transform = GetComponent<Transform>();
             _rigidBody = GetComponent<Rigidbody2D>();
@@ -24,6 +26,8 @@ namespace Components.Enemies.Scripts {
         }
 
         private void move() {
+            if (stop) return;
+            
             var position = _transform.position;
             var direction = _nextRoutePoint.transform.position - position;
             direction.Normalize();
@@ -35,7 +39,10 @@ namespace Components.Enemies.Scripts {
             if (!other.CompareTag(RouteCreator.RoutePointTag)) return;
             
             var next = _nextRoutePoint.getNextPoint();
-            if (next == null) return;
+            if (next == null) {
+                stop = true;
+                return;
+            }
             
             _nextRoutePoint = next;
         }

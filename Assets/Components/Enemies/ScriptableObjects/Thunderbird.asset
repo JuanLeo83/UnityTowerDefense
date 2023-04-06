@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aeb85501e5ba48340ae76cec85128858, type: 3}
   m_Name: Thunderbird
   m_EditorClassIdentifier: 
-  hp: 50
+  hp: 20
   attack: 20
-  speed: 10
+  speed: 2
   type: 2
