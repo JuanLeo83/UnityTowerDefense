@@ -7,6 +7,7 @@ namespace Components.Enemies.Scripts {
         private Rigidbody2D _rigidBody;
 
         private RoutePoint _nextRoutePoint;
+        private EnemyParams _enemyParams;
         private float _speed;
 
         public bool stop = false;
@@ -15,13 +16,13 @@ namespace Components.Enemies.Scripts {
             _transform = GetComponent<Transform>();
             _rigidBody = GetComponent<Rigidbody2D>();
 
-            var enemyParams = GetComponent<EnemyParams>();
-            _nextRoutePoint = enemyParams.startPoint;
-            _speed = enemyParams.parameters.speed;
+            _enemyParams = GetComponent<EnemyParams>();
+            _nextRoutePoint = _enemyParams.startPoint;
+            _speed = _enemyParams.parameters.speed;
         }
 
-
         private void Update() {
+            stop = !_enemyParams.isAlive();
             move();
         }
 
