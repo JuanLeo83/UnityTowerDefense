@@ -30,5 +30,14 @@ namespace Components.Enemies.Scripts {
             var movement = direction;
             _rigidBody.MovePosition(position + movement * (_speed * Time.deltaTime));
         }
+
+        private void OnTriggerEnter2D(Collider2D other) {
+            if (!other.CompareTag(RouteCreator.RoutePointTag)) return;
+            
+            var next = _nextRoutePoint.getNextPoint();
+            if (next == null) return;
+            
+            _nextRoutePoint = next;
+        }
     }
 }

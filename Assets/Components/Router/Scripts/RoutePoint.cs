@@ -6,18 +6,18 @@ namespace Components.Router.Scripts {
         [SerializeField] public int position = 1;
         [SerializeField] [CanBeNull] private RoutePoint nextPoint;
 
-        public bool IsEndOfRoute() => nextPoint == null;
+        public bool isEndOfRoute() => nextPoint == null;
 
-        public RoutePoint GetNextPoint() => nextPoint;
+        public RoutePoint getNextPoint() => nextPoint;
 
-        public void SetNextPoint(RoutePoint next) {
+        public void setNextPoint(RoutePoint next) {
             nextPoint = next;
         }
 
-        public void RemovePoint() {
+        public void removePoint() {
             var parent = transform.parent.gameObject;
             var routeCreator = parent.GetComponent<RouteCreator>();
-            routeCreator.RemovePointAndLinkAgain(position);
+            routeCreator.removePointAndLinkAgain(position);
         }
 
         private void OnDrawGizmos() {

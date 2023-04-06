@@ -26,7 +26,7 @@ namespace Components.Router.RouterEditor {
             DrawDefaultInspector();
             
             if (GUILayout.Button("Remove")) {
-                RoutePoint.RemovePoint();
+                RoutePoint.removePoint();
             }
         }
     }

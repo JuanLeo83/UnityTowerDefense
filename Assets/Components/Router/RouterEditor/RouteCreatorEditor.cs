@@ -10,7 +10,7 @@ namespace Components.Router.RouterEditor {
         private void OnSceneGUI() {
             EditorGUI.BeginChangeCheck();
 
-            foreach (var point in RouteCreator.GetPoints()) {
+            foreach (var point in RouteCreator.getPoints()) {
                 var textStyle = new GUIStyle {
                     fontStyle = FontStyle.Bold,
                     fontSize = 18,
@@ -32,7 +32,7 @@ namespace Components.Router.RouterEditor {
             DrawDefaultInspector();
 
             if (GUILayout.Button("Add point")) {
-                RouteCreator.CreateNextPoint();
+                RouteCreator.createNextPoint();
             }
         }
     }

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8273211433308622885}
   - component: {fileID: 7070135546882475601}
+  - component: {fileID: 5362960344224401760}
   m_Layer: 0
   m_Name: RoutePoint
   m_TagString: Untagged
@@ -44,6 +45,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 678a6b0aa1ba48b5d826afef53cd6ae4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 7070135546882475601}
   position: 1
-  nextPoints: []
+  nextPoint: {fileID: 0}
+--- !u!58 &5362960344224401760
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859731120941901599}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5

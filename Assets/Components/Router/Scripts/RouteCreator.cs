@@ -4,10 +4,12 @@ using UnityEngine;
 
 namespace Components.Router.Scripts {
     public class RouteCreator : MonoBehaviour {
+        public static readonly string RoutePointTag = "RoutePoint";
+        
         [SerializeField] private RoutePoint prefab;
         [SerializeField] private List<RoutePoint> points;
 
-        public void CreateNextPoint() {
+        public void createNextPoint() {
             points ??= new List<RoutePoint>();
 
             var lastPointAdded = points.Count > 0 ? points.Last() : null;
@@ -26,17 +28,18 @@ namespace Components.Router.Scripts {
             if (nextPoint is null) return;
 
             nextPoint.position = points.Count + 1;
-            if (lastPointAdded is not null) lastPointAdded.SetNextPoint(nextPoint);
+            nextPoint.tag = RoutePointTag;
+            if (lastPointAdded is not null) lastPointAdded.setNextPoint(nextPoint);
             points.Add(nextPoint);
         }
 
-        public IEnumerable<RoutePoint> GetPoints() => points;
+        public IEnumerable<RoutePoint> getPoints() => points;
 
-        public void RemovePointAndLinkAgain(int position) {
+        public void removePointAndLinkAgain(int position) {
             var element = points.Find(point => point.position == position);
 
             if (position > 1) {
-                points[position - 2].SetNextPoint(element.IsEndOfRoute() ? null : points[position]);
+                points[position - 2].setNextPoint(element.isEndOfRoute() ? null : points[position]);
             }
 
             points.Remove(element);
