@@ -7,22 +7,22 @@ namespace Components.Enemies.Scripts {
         private Rigidbody2D _rigidBody;
 
         private RoutePoint _nextRoutePoint;
-        private EnemyParams _enemyParams;
+        private EnemyEntity _enemyEntity;
         private float _speed;
 
-        public bool stop = false;
+        public bool stop;
 
         private void Start() {
             _transform = GetComponent<Transform>();
             _rigidBody = GetComponent<Rigidbody2D>();
 
-            _enemyParams = GetComponent<EnemyParams>();
-            _nextRoutePoint = _enemyParams.startPoint;
-            _speed = _enemyParams.parameters.speed;
+            _enemyEntity = GetComponent<EnemyEntity>();
+            _nextRoutePoint = _enemyEntity.startPoint;
+            _speed = _enemyEntity.parameters.speed;
         }
 
         private void Update() {
-            stop = !_enemyParams.isAlive();
+            stop = !_enemyEntity.State.isAlive();
             move();
         }
 

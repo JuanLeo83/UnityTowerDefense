@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Components.Towers.Scripts {
     public class TowerAttack : MonoBehaviour {
-        [SerializeField] private List<EnemyParams> enemiesInRange;
+        [SerializeField] private List<EnemyEntity> enemiesInRange;
 
         private TowerSO _towerParams;
 
@@ -31,16 +31,16 @@ namespace Components.Towers.Scripts {
         }
 
         private void OnTriggerEnter2D(Collider2D other) {
-            if (!other.CompareTag(EnemyParams.EnemyTag)) return;
+            if (!other.CompareTag(EnemyEntity.EnemyTag)) return;
 
-            var enemy = other.GetComponent<EnemyParams>();
+            var enemy = other.GetComponent<EnemyEntity>();
             enemiesInRange.Add(enemy);
         }
 
         private void OnTriggerExit2D(Collider2D other) {
-            if (!other.CompareTag(EnemyParams.EnemyTag)) return;
+            if (!other.CompareTag(EnemyEntity.EnemyTag)) return;
 
-            var enemy = other.GetComponent<EnemyParams>();
+            var enemy = other.GetComponent<EnemyEntity>();
             enemiesInRange.Remove(enemy);
         }
     }
