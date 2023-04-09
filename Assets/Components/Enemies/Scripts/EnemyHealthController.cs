@@ -1,7 +1,7 @@
 ﻿using Common.Scripts.ObserverPattern;
 
 namespace Components.Enemies.Scripts {
-    public class EnemyHealthController : Observable<float> {
+    public class EnemyHealthController : DataEmitter<float> {
         private readonly EnemyEntity _entity;
 
         public EnemyHealthController(EnemyEntity entity) => _entity = entity;
@@ -14,17 +14,9 @@ namespace Components.Enemies.Scripts {
 
         public override void emit() {
             var healthPercent = _entity.State.hp * 100f / _entity.parameters.hp;
-            foreach (var observer in observers) {
+            foreach (var observer in receivers) {
                 observer.receive(healthPercent);
             }
-        }
-
-        public override void addObserver(IObserver<float> observer) {
-            observers.Add(observer);
-        }
-
-        public override void removeObserver(IObserver<float> observer) {
-            observers.Remove(observer);
         }
     }
 }
