@@ -6,8 +6,6 @@ namespace Components.HealthBar.Scripts {
 
         private void Start() {
             addReceivers(GetComponentsInChildren<IDataReceiver<HealthBarData>>());
-            // _data = new HealthBarData(0, false);
-            // emit();
         }
 
         public void receive(float value) {
