@@ -8,18 +8,20 @@ namespace Components.Enemies.Scripts {
         public EnemySO parameters;
         public RoutePoint startPoint;
 
-        public EnemyStatus State { get; private set; }
+        public EnemyState State { get; private set; }
 
-        private EnemyLifeController _lifeController;
+        private EnemyHealthController _healthController;
 
         private void Start() {
             tag = EnemyTag;
-            State = new EnemyStatus(parameters);
-            _lifeController = new EnemyLifeController(this);
+            name = parameters.name;
+            State = new EnemyState(parameters);
+            _healthController = new EnemyHealthController(this);
+            _healthController.addObserver(GetComponentInChildren<HealthBar>());
         }
 
         public void setDamage(int damage) {
-            _lifeController.setDamage(damage);
+            _healthController.setDamage(damage);
         }
     }
 }

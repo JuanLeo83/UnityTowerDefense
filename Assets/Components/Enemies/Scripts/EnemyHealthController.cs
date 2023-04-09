@@ -1,0 +1,30 @@
+﻿using Common.Scripts.ObserverPattern;
+
+namespace Components.Enemies.Scripts {
+    public class EnemyHealthController : Observable<float> {
+        private readonly EnemyEntity _entity;
+
+        public EnemyHealthController(EnemyEntity entity) => _entity = entity;
+
+        public void setDamage(int damage) {
+            _entity.State.hp -= damage;
+            _entity.gameObject.SetActive(_entity.State.isAlive());
+            emit();
+        }
+
+        public override void emit() {
+            var healthPercent = _entity.State.hp * 100f / _entity.parameters.hp;
+            foreach (var observer in observers) {
+                observer.receive(healthPercent);
+            }
+        }
+
+        public override void addObserver(IObserver<float> observer) {
+            observers.Add(observer);
+        }
+
+        public override void removeObserver(IObserver<float> observer) {
+            observers.Remove(observer);
+        }
+    }
+}
